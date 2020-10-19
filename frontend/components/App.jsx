@@ -1,8 +1,13 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+
+import Splash from './Splash';
 
 function App(props) {
     return (
-        <h1>Hello from react</h1>
+        <>
+            <Route path="/" component={Splash} />
+        </>
     )
 }
 
