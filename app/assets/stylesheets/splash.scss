@@ -1,0 +1,116 @@
+#splash {
+  background: linear-gradient(-45deg, #422e8e, #229d7c);
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+  font-family: 'FranKlein';
+}
+
+#splash-header {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 80px;
+  height: 80px;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+#splash-logo {
+  font-size: 25px;
+  font-family: 'AmericanCaptain';
+  line-height: 45px;
+  width: 85px;
+  background-image: image-url('apple.png');
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  color: white;
+  text-align: right;
+}
+
+#splash-header-links {
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+  line-height: 40px;
+}
+
+#splash-header > a:last-child {
+  text-align: center;
+  line-height: 10px;
+  box-sizing: border-box;
+  width: 65px;
+  height: 40px;
+  background-color: white;
+  font-size: 14px;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+#splash-header-links > a {
+  color: white;
+  font-weight: bold;
+}
+
+#splash-main-element {
+  position: relative;
+  right: 50%;
+  left: 50%;
+  transform: translate(-50%);
+
+  display: flex;
+  width: 2590px;
+  height: 545px;
+  overflow: hidden;
+  margin: auto 0;
+
+  #splash-float-left {
+    width: 950px; 
+    height: 452px;
+    position: absolute;
+    z-index: 1;
+    background-image: image-url('splash-left');
+    bottom: 0;
+    left: 0;
+  }
+  #splash-float-right {
+    width: 950px; 
+    height: 452px;
+    position: absolute;
+    z-index: 1;
+    background-image: image-url('splash-right');
+    bottom: 0;
+    right: 0;
+  }
+
+
+  #splash-main-box {
+    margin: 130px auto 0;
+    height: 200px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 55px;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0 auto;
+    font-size: 19px;
+    width: 770px;
+    height: 100px;
+    text-align: center;
+    line-height: 32px;
+    color: white;
+  }
+}
+

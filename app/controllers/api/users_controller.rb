@@ -9,7 +9,7 @@ class Api::UsersController < ApplicationController
             render json: @user.errors.full_mesasges, status: 422
         end
     end
-
+    
     private
 
     def user_params

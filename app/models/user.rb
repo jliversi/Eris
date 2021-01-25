@@ -11,11 +11,10 @@ class User < ApplicationRecord
 
     def User.find_by_credentials(email, password)
         user = User.find_by_email(email)
-        return "Email does not exist." unless user 
-        if user.is_password?(password)
+        if user && user.is_password?(password)
             return user
         else 
-            return "Password does not match."
+            return nil
         end
     end
 
@@ -54,12 +53,13 @@ class User < ApplicationRecord
         self.session_token
     end
     
-    private
-
+    
     def is_password?(pw)
         BCrypt::Password.new(password_digest).is_password?(pw)
     end
-
+    
+    private
+    
     def ensure_session_token
         self.session_token ||= SecureRandom.urlsafe_base64(10)
     end
