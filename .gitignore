@@ -26,6 +26,8 @@
 /yarn-error.log
 
 /public/assets
+/public/assets/webpack/*
+!/public/assets/webpack/.keep
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.

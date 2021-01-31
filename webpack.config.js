@@ -3,8 +3,8 @@ const path = require('path');
 module.exports = {
     entry: './frontend/entry',
     output: {
-        path: path.resolve(__dirname, 'app', 'assets'),
-        filename: 'javascripts/bundle.js'
+        path: path.resolve(__dirname),
+        filename: 'app/assets/javascripts/bundle.js'
     },
     module: {
         rules: [
@@ -23,8 +23,8 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name][md5:hash].[ext]',
-                    outputPath: 'webpack/webpack_assets/',
-                    publicPath: '/assets/webpack_assets/'
+                    outputPath: '/public/assets/webpack',
+                    publicPath: '/assets/webpack/'
                 }
             }
         ]
