@@ -6,6 +6,9 @@ const useLoginForm = (onSubmit) => {
     e.preventDefault();
     onSubmit(user);
   }
+  const demoSubmit = (e) => {
+    onSubmit({email: 'user@demo.com', password: 'hunter2'});
+  };
   const handleChange = (e) => {
     e.persist();
     setInputs(user => ({
@@ -13,7 +16,7 @@ const useLoginForm = (onSubmit) => {
       [e.target.name]: e.target.value
     }))
   }
-  return [user, handleChange, handleSubmit];
+  return [user, handleChange, handleSubmit, demoSubmit];
 }
 
 export default useLoginForm;
