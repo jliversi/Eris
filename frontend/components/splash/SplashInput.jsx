@@ -1,17 +1,33 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { checkEmail } from '../../util/session_api_util';
+import { useCheckEmail, useLoggedIn } from '../custom_hooks/session';
 
+function SplashInput(props) {
+  const [inputOpen, email, openInput, handleChange] = useCheckEmail();
+  const [loggedIn] = useLoggedIn();
+  const submit = (e) => {
+    e.preventDefault();
+    checkEmail(email).then(
+      () => props.history.push('/login', { email }),
+      () => props.history.push('/register', { email })
+    )
+    
+  }
 
-function SplashInput({ loggedIn }) {
-
-  // will take a username, sign the user up but with "registration_complete" set to false
-  // make migration adding registration complete field for users (default falser)
-  // go to regular signup and make it also send "registration_complete: true"
-
-  // temp version:
-  const path = loggedIn ? '/channels' : '/login'
-  return <Link to={path} >Open Eris in your browser</Link>
+  if (loggedIn) {
+    return <Link to='/channels' >Open Eris in your browser</Link>
+  } else if (!inputOpen) {
+    return (<button onClick={openInput}>Open Eris in your browser</button>)
+  } else {
+    return (
+      <form className='splash-input' onSubmit={submit}>
+        <input onChange={handleChange} type="email" value={email} placeholder='Enter an email' />
+        <i className="fas fa-arrow-right" onClick={submit}></i>
+      </form>
+    )
+  }
 }
 
-export default SplashInput;
+export default withRouter(SplashInput);

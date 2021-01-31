@@ -1,8 +1,12 @@
-// .2a5ee8 (bg left)
-// .4d78f3 (bg right)
-// 
-// 
+@keyframes splash-float {
+  0%   {transform: translateX(0);}
+  100% {transform: translateX(1000px);}
+}
 
+@keyframes splash-input-open {
+  0% {width: 60px}
+  100% {width: 300px}
+}
 
 .splash {
   background-color: #2a5ee8;
@@ -10,7 +14,6 @@
   width: 100vw;
   max-width: 100%;
   overflow: hidden;
-  font-family: 'Assistant';
 
   
 }
@@ -60,11 +63,22 @@
   font-size: 14px;
   padding: 15px;
   border-radius: 20px;
+
+  transition: all 0.5s;
+
+  &:hover {
+    color: #4670e0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 20%);
+  }
 }
 
 .splash-header-links > a {
   color: white;
   font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 
@@ -90,44 +104,86 @@
     width: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     position: relative;
     z-index: 1000;
     align-items: center;
+
+    h1 {
+      font-size: 55px;
+      color: white;
+      text-align: center;
+      font-weight: 800;
+      margin-bottom: 60px;
+    }
+  
+  
+    p {
+      margin: 0 auto;
+      font-size: 20px;
+      width: 770px;
+      height: 100px;
+      text-align: center;
+      line-height: 32px;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    button, a {
+      color: white;
+      background-color: #23272a;
+      font-size: 20px;
+      border-radius: 28px;
+      padding: 16px 32px;
+      border: none;
+      cursor: pointer;
+      transition: box-shadow 0.5s;
+      
+      &:hover {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 20%);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .splash-input {
+      display: flex;
+      animation: splash-input-open 1s;
+      width: 300px;
+      position: relative;
+
+      input {
+        background-color: white;
+        font-size: 16px;
+        border-radius: 28px;
+        padding: 16px 32px;
+        border: none;
+        width: 100%;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      
+
+      i {
+        color: white;
+        padding: 10px 20px;
+        font-size: 17px;
+        position: absolute;
+        background-color: #4670e0;
+        right: 9px;
+        border-radius: 28px;
+        top: 6px;
+      }
+    }
   }
 
-  h1 {
-    font-size: 55px;
-    color: white;
-    text-align: center;
-    font-weight: 800;
-  }
 
-
-  p {
-    margin: 0 auto;
-    font-size: 20px;
-    width: 770px;
-    height: 100px;
-    text-align: center;
-    line-height: 32px;
-    color: white;
-  }
-
-  a {
-    color: white;
-    background-color: #23272a;
-    font-size: 20px;
-    border-radius: 28px;
-    padding: 16px 32px;
-  }
 }
 
 
-@keyframes splash-float {
-  0%   {transform: translateX(0);}
-  100% {transform: translateX(1000px);}
-}
 
 
 .floaters {
@@ -159,7 +215,7 @@
   .balloons {
     z-index: 75;
     left: 1000px;
-    top: 350px;
+    top: 415px;
     animation: splash-float 100s;
   }
   .island1 {
@@ -218,7 +274,6 @@
   background-color: #23272a;
   width: 100%;
   min-height: calc(100vh - 625px);
-  font-family: 'Assistant';
 
   > div {
     width: 1200px;
@@ -239,6 +294,10 @@
       color: #4670e0;
       font-weight: 800;
       margin-bottom: 10px;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     p {
@@ -253,6 +312,11 @@
     li {
       font-size: 16px;
       line-height: 28px;
+      color: white;
+
+      a:hover {
+        text-decoration: underline;
+      }
     }
 
     li:first-child {

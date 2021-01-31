@@ -1,9 +1,6 @@
 import React from 'react';
 
-
-
-
-import useLoggedIn from '../custom_hooks/useLoggedIn';
+import { useLoggedIn } from '../custom_hooks/session';
 
 import SplashHeader from './SplashHeader';
 import SplashMain from './SplashMain';

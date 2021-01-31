@@ -11,6 +11,15 @@ class Api::SessionsController < ApplicationController
             render json: ['Login or password is invalid.'], status: 401
         end
     end
+
+    def check_email
+        @user = User.find_by_email(params[:email])
+        if @user
+            render json: {}
+        else
+            render json: {}, status: 404
+        end
+    end
  
     def destroy
         if current_user

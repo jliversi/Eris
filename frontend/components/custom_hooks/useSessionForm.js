@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-const useLoginForm = (onSubmit) => {
-  const [user, setInputs] = useState({email: '', password: ''});
+const useLoginForm = (onSubmit, email = '') => {
+  const [user, setInputs] = useState({email: email, password: ''});
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(user);
   }
   const demoSubmit = (e) => {
+    e.preventDefault();
     onSubmit({email: 'user@demo.com', password: 'hunter2'});
   };
   const handleChange = (e) => {

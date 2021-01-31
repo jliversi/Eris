@@ -10,7 +10,7 @@ function SplashFooter({ loggedIn }) {
       <div>
         <div className='footer-links'>
           <div>
-            <h1><a target='_blank' href='https://github.com/jliversi/Eris'>Click for source code</a></h1>
+            <h1><a target='_blank' href='https://github.com/jliversi/Eris'>Source code here</a></h1>
             <p>This app is a clone of of the popular Discord and serves simply as a showcase of my full-stack web development skills.</p>
           </div>
           <ul>
@@ -37,8 +37,8 @@ function SplashFooter({ loggedIn }) {
           </ul>
           <ul>
             <li>Other projects</li>
-            <li>Sudoku Solver</li>
-            <li>Conway Prev State Finder</li>
+            <li><a target='_blank' href='https://github.com/jliversi/SudokuSolver'>Sudoku Solver</a></li>
+            <li><a target='_blank' href=''>Conway Prev State Finder</a></li>
           </ul>
         </div>
         <div className='footer-buttons'>
