@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect }  from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { login } from '../../actions/session_actions';
-import { useSessionForm } from '../custom_hooks/session';
+import { signup } from '../../actions/session_actions';
+import { clearErrors } from '../../actions/error_actions';
+import { useSessionForm, useDemoLogin } from '../custom_hooks/session_hooks';
 
 const Register = (props) => {
   const dispatch = useDispatch();
   const errors = useSelector(({ errors }) => errors);
-  const submit = user => dispatch(login(user));
+  let pwError = errors.filter(el => el[0] === 'P');
+  let emailError = errors.filter(el => el[0] === 'E');
+  if (pwError.length) pwError = '- ' + pwError[0];
+  if (emailError.length) emailError = '- ' + emailError[0];
+  const pwErrorClass = pwError.length ? 'error' : '';
+  const emailErrorClass = emailError.length ? 'error' : '';
   let defaultEmail;
   
   if (props.location.state) {
@@ -16,8 +22,15 @@ const Register = (props) => {
   } else {
     defaultEmail = '';
   }
-  const [user, handleChange, handleSubmit, demoSubmit] = useSessionForm(submit, defaultEmail);
-
+  const [user, handleChange, handleSubmit] = useSessionForm(signup, {email: defaultEmail, username: '', password: ''});
+  const [demoSubmit] = useDemoLogin();
+  const inputEl = useRef(null);
+  useEffect(() => {
+    inputEl.current.focus();
+    return () => {
+      dispatch(clearErrors());
+    }
+  }, []);
 
   return (
     <div className='session-page'>
@@ -25,15 +38,18 @@ const Register = (props) => {
 
       <div className='session-form-container'>
         <form onSubmit={handleSubmit}>
-          <label>EMAIL
-            <input onChange={handleChange} type="email" name="email" value={user.email} required />
-          </label>
-          <label>PASSWORD
-            <input onChange={handleChange} type="password" name="password" value={user.password} required />
-          </label>
-          <button>Login</button>
-          <Link to='/login'>Already have an account?</Link>
-          <button className='demo-login' onClick={demoSubmit}>Try with demo user</button>
+          <h1>Create an account</h1>
+          <label htmlFor='email' className={emailErrorClass}>EMAIL <span>{emailError}</span></label>
+          <input className={emailErrorClass} ref={inputEl} onChange={handleChange} type="email" name="email" value={user.email} required />
+          
+          <label htmlFor='username'>USERNAME</label>
+          <input onChange={handleChange} type="username" name="username" value={user.username} required />
+          
+          <label htmlFor='password' className={pwErrorClass}>PASSWORD <span>{pwError}</span></label>
+          <input className={pwErrorClass} onChange={handleChange} type="password" name="password" value={user.password} required />
+          <button>Register</button>
+          <span><Link to={{pathname: '/login', state: {email: user.email}}}>Already have an account?</Link></span>
+          <p className='demo-login' onClick={demoSubmit}>Or try with a demo user!</p>
         </form>
       </div>
     </div>

@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../../actions/session_actions';
 
 
-export const useSessionForm = (onSubmit, email = '') => {
-  const [user, setInputs] = useState({ email: email, password: '' });
+export const useSessionForm = (onSubmit, defaultUser = {}) => {
+  const dispatch = useDispatch();
+  const [user, setInputs] = useState(defaultUser);
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(user);
+    dispatch(onSubmit(user));
   }
-  const demoSubmit = (e) => {
-    e.preventDefault();
-    onSubmit({ email: 'user@demo.com', password: 'hunter2' });
-  };
   const handleChange = (e) => {
     e.persist();
     setInputs(user => ({
@@ -19,8 +17,21 @@ export const useSessionForm = (onSubmit, email = '') => {
       [e.target.name]: e.target.value
     }))
   }
-  return [user, handleChange, handleSubmit, demoSubmit];
+  return [user, handleChange, handleSubmit];
 }
+
+
+
+export const useDemoLogin = () => {
+  const dispatch = useDispatch();
+  const demoSubmit = (e) => {
+    e.preventDefault();
+    return dispatch(login({ email: 'user@demo.com', password: 'hunter2' }));
+  };
+  return [demoSubmit];
+}
+
+
 
 
 export const useCheckEmail = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, withRouter, Redirect } from 'react-router-dom';
-import { useLoggedIn } from '../components/custom_hooks/session';
+import { useLoggedIn } from '../components/custom_hooks/session_hooks';
 
 const Auth = ({ component: Component, path, exact }) => {
   const [loggedIn] = useLoggedIn();
