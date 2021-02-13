@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
         session[:session_token] = nil
         @current_user = nil
     end
+
+    def ensure_logged_in
+        unless current_user
+            render json: ['No current user'], status: 401
+        end
+    end
 end

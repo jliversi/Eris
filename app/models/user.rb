@@ -8,6 +8,17 @@ class User < ApplicationRecord
     attr_reader :password
 
     # associations here
+    has_many :server_memberships,
+        foreign_key: :user_id,
+        class_name: :ServerMembership
+
+    has_many :joined_servers,
+        through: :server_memberships,
+        source: :server
+
+    has_many :owned_servers,
+        foreign_key: :user_id,
+        class_name: :Server
 
     def User.find_by_credentials(email, password)
         user = User.find_by_email(email)

@@ -7,7 +7,16 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy] do
       get 'check_email'
     end
+
+    resources :servers, only: [:index, :show, :create, :update, :destroy] do
+      member do 
+        post 'join'
+        post 'leave'
+      end
+    end
   end
+
+  # TODO: Implement server invite routes and (ServerInvite ?) controller action
 
   get '*path', to: 'static_pages#root'
 

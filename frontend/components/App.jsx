@@ -6,7 +6,7 @@ import { ProtectedRoute, AuthRoute } from '../util/route_util';
 import Splash from './splash/Splash';
 import Login from './session/Login';
 import Register from './session/Register';
-import Channels from './channels/channels';
+import Dashboard from './Dashboard';
 
 function App(props) {
     return (
@@ -14,7 +14,7 @@ function App(props) {
             <Route exact path='/' component={Splash} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
-            <ProtectedRoute path='/channels' component={Channels} />
+            <ProtectedRoute path='/channels' component={Dashboard} />
         </>
     )
 }
