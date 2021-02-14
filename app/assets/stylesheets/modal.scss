@@ -1,0 +1,31 @@
+@keyframes fade-in-modal {
+  0% {background: rgba(0, 0, 0, 0);}
+  100% {background: rgba(0, 0, 0, 0.7);}
+}
+
+@keyframes fade-out-modal {
+  0% {background: rgba(0, 0, 0, 0.7);}
+  100% {background: rgba(0, 0, 0, 0);}
+}
+
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  animation: fade-in-modal 0.4s forwards;
+  z-index: 10;
+}
+
+.modal-background-fade-out {
+  animation: fade-out-modal 0.4s forwards;
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

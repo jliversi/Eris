@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, withRouter, Redirect } from 'react-router-dom';
 import { useLoggedIn } from '../components/custom_hooks/session_hooks';
+
 
 const Auth = ({ component: Component, path, exact }) => {
   const [loggedIn] = useLoggedIn();
@@ -9,7 +10,7 @@ const Auth = ({ component: Component, path, exact }) => {
       !loggedIn ? (
         <Component {...props} />
       ) : (
-          <Redirect to="/channels" />
+          <Redirect to="/channels/@me" />
         )
     )} />
   )
@@ -27,6 +28,7 @@ const Protected = ({ component: Component, path, exact }) => {
     )} />
   )
 };
+
 
 export const AuthRoute = withRouter(Auth);
 export const ProtectedRoute = withRouter(Protected);

@@ -10,14 +10,15 @@ class User < ApplicationRecord
     # associations here
     has_many :server_memberships,
         foreign_key: :user_id,
-        class_name: :ServerMembership
+        class_name: :ServerMembership,
+        dependent: :destroy
 
     has_many :joined_servers,
         through: :server_memberships,
         source: :server
 
     has_many :owned_servers,
-        foreign_key: :user_id,
+        foreign_key: :owner_id,
         class_name: :Server
 
     def User.find_by_credentials(email, password)

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from '../../actions/session_actions';
+import { login } from '../actions/session_actions';
 
 
 export const useSessionForm = (onSubmit, defaultUser = {}) => {

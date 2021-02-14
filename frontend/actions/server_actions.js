@@ -53,8 +53,8 @@ export const fetchServer = (id) => dispatch => (
     )
 );
 
-export const createServer = server => dispatch => (
-  ServerApiUtil.createServer(server)
+export const createServer = serverFormData => dispatch => (
+  ServerApiUtil.createServer(serverFormData)
     .then(
       payload => dispatch(receiveServer(payload)),
       res => dispatch(receiveErrors(res.responseJSON))

@@ -18,6 +18,11 @@ Rails.application.routes.draw do
 
   # TODO: Implement server invite routes and (ServerInvite ?) controller action
 
-  get '*path', to: 'static_pages#root'
+  # TODO: figure this out....
+  get '/login', to: 'static_pages#root'
+  get '/register', to: 'static_pages#root'
+  get '/channels', to: 'static_pages#root'
+  get '/channels/:server_id', to: 'static_pages#root'
+  get '/channels/:server_id/:channel_id', to: 'static_pages#root'
 
 end

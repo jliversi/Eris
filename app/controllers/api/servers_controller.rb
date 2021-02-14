@@ -9,7 +9,6 @@ class Api::ServersController < ApplicationController
     @server = Server.new(server_params)
     @server.owner = current_user
     if @server.save
-      @server.members << current_user
       render :show
     else 
       render json: @server.errors.full_messages
@@ -25,7 +24,7 @@ class Api::ServersController < ApplicationController
   private 
 
   def server_params
-    params.require(:server).permit(:name)
+    params.require(:server).permit(:name, :image)
   end
 
 end

@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/Root';
 
+
+
+
 let preloadedState = {};
 
 document.addEventListener('DOMContentLoaded', function() {
