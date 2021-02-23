@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { signup } from '../../actions/session_actions';
 import { clearErrors } from '../../actions/error_actions';
-import { useSessionForm, useDemoLogin } from '../custom_hooks/session_hooks';
+import { useSessionForm, useDemoLogin } from '../../custom_hooks/session_hooks';
 
 const Register = (props) => {
   const dispatch = useDispatch();

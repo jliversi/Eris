@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 
 import { fetchServers } from '../../actions/server_actions';
 import { openModal } from '../../actions/modal_actions';
@@ -12,20 +13,23 @@ function ServerIndex(props) {
   useEffect(() => {
     dispatch(fetchServers());
   }, [])
-  const openCreateServer = () => dispatch(openModal('serverCreate'));
+  const openServerCreate = () => dispatch(openModal('ServerCreateForm'));
 
   const serverItems = Object.values(servers).map(s => {
+    const className = parseInt(props.match.params.serverId) === s.id ? 'selected' : '';
     return (
-      <ServerIndexItem key={s.id} server={s} />
+      <ServerIndexItem className={className} key={s.id} server={s} />
     )
   })
-
+  const topClassName = props.match.params.serverId === '@me' ? 'no-img-server selected' : 'no-img-server';
   return (
-    <ul style={{ background: 'red' }}>
+    <ul className='server-sidebar'>
+      <li className={topClassName}><Link to='/channels/@me'><i className="fas fa-apple-alt"></i></Link></li>
+      <hr/>
       {serverItems}
-      <li onClick={openCreateServer}><i className="fas fa-plus"></i></li>
+      <li onClick={openServerCreate}><i className="fas fa-plus"></i></li>
     </ul>
   )
 }
 
-export default ServerIndex;
+export default withRouter(ServerIndex);

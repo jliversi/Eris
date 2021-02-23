@@ -1,0 +1,135 @@
+$imitation-blue: #7289da;
+$imitation-green: #43b581;
+$dark-gray: #23272a;
+$mid-dark-gray: #2f3136;
+$mid-gray: #36393f;
+$light-gray: #eeeded;
+$error-color: #f34040;
+
+.server-sidebar {
+  background-color: $dark-gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  hr {
+    width: 30px;
+    border-color: $mid-gray;
+    border-style: solid;
+    margin-bottom: 0;
+  }
+
+  li {
+    position: relative;
+    color: $light-gray;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 50%;
+    margin-top: 8px;
+    transition: all 0.2s;
+
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: $light-gray;
+      height: 0px; 
+      width: 10px; 
+      top: 25px; 
+      right: 61px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+
+    &:not(.selected):hover:after {
+      height: 20px;
+      width: 10px;
+      top: 15px;
+      right: 57px;
+    }
+
+    &.selected:after {
+      height: 40px;
+      width: 10px;
+      top: 6px;
+      right: 57px;
+    }
+
+    
+
+    &.no-img-server {
+      background-color: $mid-gray;
+
+      i {
+        font-size: 30px;
+        line-height: 49px;
+      }
+
+      &:hover, &.selected {
+        background-color: $imitation-blue;
+      }
+    }
+
+    &.img-server {
+      background-position: center;
+      background-size: cover;
+    }
+
+    &:hover, &.selected {
+      border-radius: 15px;
+    }
+
+    &:last-of-type {
+      background-color: $mid-gray;
+
+      &:hover, &.selected {
+        background-color: $imitation-green;
+        i {
+          color: white
+        }
+      }
+
+      i {
+        color: $imitation-green;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+      }
+    }
+
+    a {
+      display: block;
+      width: 50px;
+      height: 50px;
+      font-size: 17px;
+      text-align: center;
+      line-height: 50px;
+    }
+  }
+}
+
+@keyframes server-form-appear {
+  0% {opacity: 0%; width: 330px; height: 300px;}
+  100% {opacity: 100%; width: 450px; height: 420px;}
+}
+
+.server-create-form {
+  width: 450px; 
+  height: 420px;
+  animation: server-form-appear 0.1s linear;
+  background-color: white;
+  border-radius: 4px;
+}
+
+@keyframes server-form-disappear {
+  0% {opacity: 100%; width: 450px; height: 420px;}
+  100% {opacity: 0%; width: 330px; height: 300px;}
+}
+
+.modal-background-fade-out .server-create-form {
+  animation: server-form-disappear 0.1s linear forwards;
+}
+
+.channel-sidebar {
+  background-color: $mid-dark-gray;
+}

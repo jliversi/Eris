@@ -5,6 +5,12 @@ class Api::ServersController < ApplicationController
     @servers = current_user.joined_servers
     render :index
   end
+
+  def show
+    @server = Server.find(params[:id])
+    render :show
+  end
+
   def create
     @server = Server.new(server_params)
     @server.owner = current_user

@@ -5,6 +5,7 @@ import { logout } from '../actions/session_actions';
 
 import ServerIndex from './servers/ServerIndex';
 import ChannelIndex from './channels/ChannelIndex';
+import MainPanel from './messages/MainPanel';
 
 function Dashboard(props) {
   // temp
@@ -14,7 +15,7 @@ function Dashboard(props) {
     <div className='dashboard'>
       <ServerIndex />
       <ChannelIndex />
-      <div style={{background: 'yellow'}}></div>
+      <MainPanel />
 
 
 

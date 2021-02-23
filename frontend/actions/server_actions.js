@@ -9,10 +9,11 @@ export const JOIN_SERVER = 'JOIN_SERVER';
 export const LEAVE_SERVER = 'LEAVE_SERVER';
 
 // regular
-const receiveServer = ({server, members}) => ({
+const receiveServer = ({server, members, channels}) => ({
   type: RECEIVE_SERVER,
   server,
-  members
+  members,
+  channels
 });
 
 const receiveServers = servers => ({

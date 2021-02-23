@@ -1,8 +1,19 @@
+# == Schema Information
+#
+# Table name: servers
+#
+#  id          :bigint           not null, primary key
+#  name        :string           not null
+#  owner_id    :integer          not null
+#  invite_code :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 class Server < ApplicationRecord
   validates :name, :invite_code, presence: true
 
   before_validation :ensure_invite_code
-  after_create :add_owner_to_members
+  after_create :create_default_associations
 
   belongs_to :owner,
     foreign_key: :owner_id,
@@ -17,13 +28,17 @@ class Server < ApplicationRecord
     through: :memberships,
     source: :user
 
+  has_many :channels,
+    dependent: :destroy
+
   has_one_attached :image
 
 
   private
 
-  def add_owner_to_members
-    ServerMembership.create(server_id: self.id, user_id: self.owner_id )
+  def create_default_associations
+    ServerMembership.create(server_id: self.id, user_id: self.owner_id)
+    Channel.create(name: 'general', server_id: self.id, is_private: false)
   end
 
   def ensure_invite_code

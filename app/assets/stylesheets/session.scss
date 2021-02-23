@@ -1,4 +1,8 @@
-@keyframes form-appear {
+$imitation-blue: #7289da;
+$mid-gray: #36393f;
+$error-red: #f34040;
+
+@keyframes session-form-appear {
   0% {opacity: 0%; top: 45%;}
   100% {opacity: 100%; top: 50%;}
 }
@@ -19,8 +23,8 @@
   }
 
   .session-form-container {
-    background-color: #36393f;
-    animation: form-appear 0.8s;
+    background-color: $mid-gray;
+    animation: session-form-appear 0.8s;
     animation-fill-mode: forwards;
     padding: 40px 35px;
     width: fit-content;
@@ -66,9 +70,9 @@
         margin-bottom: 8px;
         transition: all 0.3s;
         &.error {
-          color: #f34040;
+          color: $error-red;
           span {
-            color: #f34040;
+            color: $error-red;
             font-style: italic;
             display: inline;
           }
@@ -94,18 +98,18 @@
           border: 1px solid black;
         }
         &:focus {
-          border: 1px solid #4670e0;
+          border: 1px solid $imitation-blue;
           outline: none;
         }
 
         &.error {
-          border: 1px solid #f34040;
+          border: 1px solid $error-red;
         }
       }
 
       button {
         width: 420px;
-        background-color: #4670e0;
+        background-color: $imitation-blue;
         color: white;
         height: 40px;
         border: none;
@@ -115,11 +119,11 @@
         border-radius: 3px;
       }
       a {
-        color: #4670e0;
+        color: $imitation-blue;
         font-weight: 600;
       }
       .demo-login {
-        color: #4670e0;
+        color: $imitation-blue;
         cursor: pointer;
         font-weight: 600;
         align-self: flex-start;

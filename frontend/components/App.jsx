@@ -16,7 +16,7 @@ function App(props) {
             <Route exact path='/' component={Splash} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
-            <ProtectedRoute path='/channels/:serverId' component={Dashboard} />
+            <ProtectedRoute path='/channels/:serverId?/:channelId?' component={Dashboard} />
         </>
     )
 }

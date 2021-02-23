@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_215944) do
+ActiveRecord::Schema.define(version: 2021_02_14_183219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,36 @@ ActiveRecord::Schema.define(version: 2021_02_13_215944) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.integer "server_id", null: false
+    t.boolean "is_private", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "direct_message_channels", force: :cascade do |t|
+    t.integer "friendship_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "inviter_id", null: false
+    t.integer "invitee_id", null: false
+    t.boolean "accepted", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "private_channel_memberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "channel_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "server_memberships", force: :cascade do |t|

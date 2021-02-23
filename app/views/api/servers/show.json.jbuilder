@@ -5,7 +5,17 @@ json.server do
 end
 
 json.members do 
-  json.array! @server.members do |user|
-    json.partial! 'api/users/user', user: user
+  @server.members.each do |user|
+    json.set! user.id do
+      json.partial! 'api/users/user', user: user
+    end
+  end
+end
+
+json.channels do 
+  @server.channels.each do |channel|
+    json.set! channel.id do
+      json.partial! 'api/channels/channel', channel: channel
+    end
   end
 end

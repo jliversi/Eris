@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link, withRouter } from 'react-router-dom';
 import { checkEmail } from '../../util/session_api_util';
-import { useCheckEmail, useLoggedIn, useDemoLogin } from '../custom_hooks/session_hooks';
+import { useCheckEmail, useLoggedIn, useDemoLogin } from '../../custom_hooks/session_hooks';
 
 function SplashInput(props) {
   const [inputOpen, email, openInput, handleChange] = useCheckEmail();
@@ -17,11 +17,11 @@ function SplashInput(props) {
   }
 
   const submitDemo = (e) => {
-    demoLogin(e).then(() => props.history.push('/channels'));
+    demoLogin(e).then(() => props.history.push('/channels/@me'));
   }
 
   if (loggedIn) {
-    return <Link to='/channels' >Open Eris in your browser</Link>
+    return <Link to='/channels/@me' >Open Eris in your browser</Link>
   } else if (!inputOpen) {
     return (
       <div>

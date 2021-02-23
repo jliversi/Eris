@@ -1,4 +1,5 @@
 import { RECEIVE_SERVERS, RECEIVE_SERVER } from "../../../actions/server_actions";
+import { REMOVE_CURRENT_USER } from "../../../actions/session_actions";
 
 const serversReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -9,6 +10,8 @@ const serversReducer = (state = {}, action) => {
     case RECEIVE_SERVER:
       const { server } = action;
       return Object.assign({}, state, { [server.id]: server });
+    case REMOVE_CURRENT_USER:
+      return {};
     default:
       return state;
   }

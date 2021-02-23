@@ -1,3 +1,6 @@
+$imitation-blue: #7289da;
+$dark-gray: #23272a;
+
 @keyframes splash-float {
   0% {transform: translateX(0);}
   100% {transform: translateX(1000px);}
@@ -64,10 +67,10 @@
   padding: 15px;
   border-radius: 20px;
 
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   &:hover {
-    color: #4670e0;
+    color: $imitation-blue;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 20%);
   }
 }
@@ -130,22 +133,22 @@
 
     button, a {
       color: white;
-      background-color: #23272a;
+      background-color: $dark-gray;
       font-size: 18px;
       border-radius: 28px;
       padding: 16px 32px;
       border: none;
       cursor: pointer;
-      transition: box-shadow 0.5s;
+      transition: box-shadow 0.3s;
 
       &.demo-login {
-        transition: all 0.5s;
+        transition: all 0.3s;
         background: white;
         color: black;
         margin-right: 20px;
 
         &:hover {
-          color: #4670e0;
+          color: $imitation-blue;
           box-shadow: 0 5px 10px rgba(0, 0, 0, 20%);
         }
       }
@@ -184,7 +187,7 @@
         padding: 10px 20px;
         font-size: 17px;
         position: absolute;
-        background-color: #4670e0;
+        background-color: $imitation-blue;
         right: 9px;
         border-radius: 28px;
         top: 6px;
@@ -283,7 +286,7 @@
 
 
 .splash-footer {
-  background-color: #23272a;
+  background-color: $dark-gray;
   width: 100%;
   min-height: calc(100vh - 625px);
 
@@ -297,13 +300,13 @@
     display: grid;
     grid-template-columns: 32% 17% 17% 17% 17%;
     
-    border-bottom: 1px solid #4670e0;
+    border-bottom: 1px solid $imitation-blue;
     padding-bottom: 40px;
     margin-bottom: 30px;
 
     h1 {
       font-size: 32px;
-      color: #4670e0;
+      color: $imitation-blue;
       font-weight: 800;
       margin-bottom: 10px;
 
@@ -332,7 +335,7 @@
     }
 
     li:first-child {
-      color: #4670e0;
+      color: $imitation-blue;
     }
   }
 
@@ -347,11 +350,17 @@
       box-sizing: border-box;
       width: fit-content;
       height: 40px;
-      background-color: #4670e0;
+      background-color: $imitation-blue;
       color: white;
       font-size: 14px;
       padding: 15px;
       border-radius: 20px;
+      transition: all 0.3s;
+
+      &:hover {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 20%);
+        background-color: #7e98f4;
+      }
     }
     i {
       color: gold;

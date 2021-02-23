@@ -5,6 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { closeModal } from '../actions/modal_actions';
 import ServerCreateForm from './servers/ServerCreateForm';
 
+
+const modalComponents = {
+  ServerCreateForm
+};
+
 function Modal(props) {
   const dispatch = useDispatch();
   const background = useRef(null);
@@ -12,23 +17,16 @@ function Modal(props) {
     background.current.classList.add('modal-background-fade-out');
     setTimeout(() => {
       dispatch(closeModal());
-    }, 100);
+    }, 400);
   }
   const modal = useSelector(({ui: {modal}}) => modal);
-  let component; 
-  switch (modal.modalType) {
-    case 'serverCreate':
-      
-      component = <ServerCreateForm />
-      break;
-    default:
-      return null;
-  }
+  let Component = modalComponents[modal.modalType];
+  if (!Component) return null;
 
   return (
     <div ref={background} className="modal-background" onClick={close}>
       <div className="modal-child" onClick={e => e.stopPropagation()}>
-        {component}
+        <Component closeModal={closeModal} />
       </div>
     </div>
   );
