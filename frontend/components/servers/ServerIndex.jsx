@@ -9,13 +9,15 @@ import ServerIndexItem from './ServerIndexItem';
 
 function ServerIndex(props) {
   const dispatch = useDispatch();
-  const servers = useSelector(({entities: {servers}}) => servers);
+  const servers = useSelector(({entities: {servers, serverMemberships}, session}) => {
+    const cuId = session.currentUserId;
+    return Object.values(serverMemberships).filter(m => m.userId === cuId).map(m => servers[m.serverId]);
+  });
   useEffect(() => {
     dispatch(fetchServers());
   }, [])
   const openServerCreate = () => dispatch(openModal('ServerCreateForm'));
-
-  const serverItems = Object.values(servers).map(s => {
+  const serverItems = servers.map(s => {
     const className = parseInt(props.match.params.serverId) === s.id ? 'selected' : '';
     return (
       <ServerIndexItem className={className} key={s.id} server={s} />

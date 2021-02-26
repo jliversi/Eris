@@ -9,16 +9,18 @@ export const JOIN_SERVER = 'JOIN_SERVER';
 export const LEAVE_SERVER = 'LEAVE_SERVER';
 
 // regular
-const receiveServer = ({server, members, channels}) => ({
+const receiveServer = ({server, members, channels, serverMemberships}) => ({
   type: RECEIVE_SERVER,
   server,
   members,
-  channels
+  channels,
+  serverMemberships
 });
 
-const receiveServers = servers => ({
+const receiveServers = ({servers, serverMemberships}) => ({
   type: RECEIVE_SERVERS,
-  servers
+  servers,
+  serverMemberships
 });
 
 const removeServer = serverId => ({
@@ -26,15 +28,13 @@ const removeServer = serverId => ({
   serverId
 });
 
-const joinServer = (userId, serverId) => ({
+const joinServer = (membership) => ({
   type: JOIN_SERVER,
-  userId,
-  serverId
+  membership
 })
-const leaveServer = (userId, serverId) => ({
+const leaveServer = (membershipId) => ({
   type: LEAVE_SERVER,
-  userId,
-  serverId
+  membershipId
 })
 
 
@@ -43,7 +43,7 @@ const leaveServer = (userId, serverId) => ({
 export const fetchServers = () => dispatch => (
   ServerApiUtil.fetchServers()
     .then(
-      servers => dispatch(receiveServers(servers))
+      payload => dispatch(receiveServers(payload))
     )
 );
 
@@ -61,3 +61,19 @@ export const createServer = serverFormData => dispatch => (
       res => dispatch(receiveErrors(res.responseJSON))
     )
 );
+
+export const createServerMembership = (userId, serverId) => dispatch => (
+  ServerApiUtil.createServerMembership(userId, serverId)
+    .then(
+      () => dispatch(joinServer(userId, serverId)),
+      res => dispatch(receiveErrors(res.responseJSON))
+    )
+)
+
+export const deleteServerMembership = (userId, serverId) => dispatch => (
+  ServerApiUtil.deleteServerMembership(userId, serverId)
+    .then(
+      ({ membershipId }) => dispatch(leaveServer(membershipId)),
+      res => dispatch(receiveErrors(res.responseJSON))
+    )
+)

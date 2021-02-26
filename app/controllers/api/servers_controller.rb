@@ -22,9 +22,14 @@ class Api::ServersController < ApplicationController
   end
 
   def join
+    @membership = ServerMembership.create(server_id: params[:server_id], user_id: params[:user_id])
+    render json: {id: @membership.id, userId: @membership.user_id, serverId: @membership.server_id}
   end
 
   def leave
+    @membership = ServerMembership.where(server_id: params[:server_id], user_id: params[:user_id]).first
+    @membership.destroy
+    render json: { membershipId: @membership.id }
   end
 
   private 

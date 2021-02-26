@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createServer } from '../actions/server_actions';
 
 
-export const useSeverCreateForm = () => {
+export const useSeverCreateForm = (closeModal, history) => {
   const username = useSelector(({entities: { users }, session: {currentUserId}}) => users[currentUserId].username);
   const dispatch = useDispatch();
   const [name, setName] = useState(`${username}'s server`);
@@ -15,7 +15,10 @@ export const useSeverCreateForm = () => {
     if (file.imageFile) {
       formData.append('server[image]', file.imageFile)
     }
-    dispatch(createServer(formData));
+    dispatch(createServer(formData)).then(({server}) => {
+      history.push(`/channels/${server.id}`);
+      closeModal();
+    })
   }
   const handleName = (e) => {
     e.persist();

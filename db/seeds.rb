@@ -21,10 +21,12 @@ s1 = Server.create!(name: 'A', owner_id: demo.id)
 end
 
 s2 = Server.create!(name: 'Z', owner_id: bob.id)
-('W'..'Y').reverse_each do |c|
-  Server.create!(name: c, owner_id: bob.id)
-end
+s3 = Server.create!(name: 'Y', owner_id: bob.id)
+s4 = Server.create!(name: 'X', owner_id: bob.id)
+s5 = Server.create!(name: 'W', owner_id: bob.id)
 
 ServerMembership.create!(server_id: s1.id, user_id: bob.id)
 ServerMembership.create!(server_id: s2.id, user_id: demo.id)
-
+ServerMembership.create!(server_id: s3.id, user_id: demo.id)
+ServerMembership.create!(server_id: s4.id, user_id: demo.id)
+ServerMembership.create!(server_id: s5.id, user_id: demo.id)

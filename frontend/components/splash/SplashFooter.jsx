@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function SplashFooter({ loggedIn }) {
 
-  const button = loggedIn ? <Link to='/channels'>Open Eris</Link> : <Link to='/register' >Sign up</Link>;
+  const button = loggedIn ? <Link to='/channels/@me'>Open Eris</Link> : <Link to='/register' >Sign up</Link>;
   return (
     <footer className='splash-footer'>
       <div>

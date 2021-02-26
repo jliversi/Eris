@@ -28,8 +28,8 @@
     "postinstall": "webpack"
   },
   "engines": {
-    "node": "10.13.0",
-    "npm": "6.4.1"
+    "node": "v15.9.0",
+    "npm": "7.5.3"
   },
   "keywords": [],
   "author": "",

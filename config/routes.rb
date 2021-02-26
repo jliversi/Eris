@@ -9,10 +9,8 @@ Rails.application.routes.draw do
     end
 
     resources :servers, only: [:index, :show, :create, :update, :destroy] do
-      member do 
-        post 'join'
-        post 'leave'
-      end
+      post 'join/:user_id', to: 'servers#join'
+      delete 'leave/:user_id', to: 'servers#leave'
     end
   end
 
@@ -21,6 +19,7 @@ Rails.application.routes.draw do
   # TODO: figure this out....
   get '/login', to: 'static_pages#root'
   get '/register', to: 'static_pages#root'
+  get '/invite/:invite_code', to: 'static_pages#root'
   get '/channels', to: 'static_pages#root'
   get '/channels/:server_id', to: 'static_pages#root'
   get '/channels/:server_id/:channel_id', to: 'static_pages#root'

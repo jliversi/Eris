@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function SplashHeader({loggedIn}) {
 
-  const button = loggedIn ? <Link to='/channels'>Open Eris</Link> : <Link to='/login' >Login</Link>;
+  const button = loggedIn ? <Link to='/channels/@me'>Open Eris</Link> : <Link to='/login' >Login</Link>;
   return (
     <header className='splash-header'>
       <Link to='/' className='splash-logo'><i className="fas fa-apple-alt"></i>Eris</Link>

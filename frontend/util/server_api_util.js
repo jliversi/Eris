@@ -21,3 +21,17 @@ export const createServer = serverFormData => (
   })
 );
 
+export const createServerMembership = (userId, serverId) => (
+  $.ajax({
+    method: 'POST',
+    url: `/api/servers/${serverId}/join/${userId}`,
+  })
+)
+
+export const deleteServerMembership = (userId, serverId) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/servers/${serverId}/leave/${userId}`,
+  })
+)
+

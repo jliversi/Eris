@@ -12,6 +12,14 @@ json.members do
   end
 end
 
+json.server_memberships do 
+  @server.memberships.each do |m|
+    json.set! m.id do
+      json.extract! m, :user_id, :server_id
+    end
+  end
+end
+
 json.channels do 
   @server.channels.each do |channel|
     json.set! channel.id do

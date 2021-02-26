@@ -7,13 +7,14 @@ import Splash from './splash/Splash';
 import Login from './session/Login';
 import Register from './session/Register';
 import Dashboard from './Dashboard';
-import Modal from './Modal';
+import Modal from './modals/Modal';
 
 function App(props) {
     return (
         <>
             <Modal />
             <Route exact path='/' component={Splash} />
+            <Route exact path='/invite/:inviteCode' render={() => <div>hello</div>} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
             <ProtectedRoute path='/channels/:serverId?/:channelId?' component={Dashboard} />
