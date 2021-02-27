@@ -268,3 +268,34 @@ $error-color: #f34040;
 .channel-sidebar {
   background-color: $mid-dark-gray;
 }
+
+@keyframes fullscreen-modal-appear {
+  0% {opacity: 0%; transform: scale(1.5); }
+  100% {opacity: 100%; transform: scale(1); }
+}
+
+@keyframes fullscreen-modal-disappear {
+  0% {opacity: 100%; transform: scale(1); }
+  100% {opacity: 0%; transform: scale(1.5); }
+}
+
+.server-settings {
+  height: 100vh;
+  width: 100vw;
+  animation: fullscreen-modal-appear 0.3s forwards;
+  background-color: $mid-gray;
+  display: grid;
+  grid-template-columns: calc(50vw - 335px) calc(50vw + 335px) ;
+
+  nav {
+    background-color: $mid-dark-gray;
+  }
+
+  section {
+
+  }
+}
+
+.modal-background-fade-out .server-settings {
+  animation: fullscreen-modal-disappear 0.3s linear forwards;
+}

@@ -21,6 +21,16 @@ class Api::ServersController < ApplicationController
     end
   end
 
+  def update
+
+  end
+
+  def destroy
+    @server = Server.find(params[:id])
+    @server.destroy
+    render json: { serverId: @server.id }
+  end
+
   def join
     @membership = ServerMembership.create(server_id: params[:server_id], user_id: params[:user_id])
     render json: {id: @membership.id, userId: @membership.user_id, serverId: @membership.server_id}

@@ -1,5 +1,5 @@
 @keyframes fade-in-modal {
-  0% {background: rgba(0, 0, 0, 0);}
+  0% {transform: scale(1)}
   100% {background: rgba(0, 0, 0, 0.7);}
 }
 
@@ -9,17 +9,20 @@
 }
 
 
-.modal-background {
+.modal-background, .modal-background-fs {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  animation: fade-in-modal 0.4s forwards;
   z-index: 10;
 }
 
-.modal-background-fade-out {
+.modal-background {
+  animation: fade-in-modal 0.4s forwards;
+}
+
+.modal-background.modal-background-fade-out {
   animation: fade-out-modal 0.4s forwards;
 }
 
@@ -28,4 +31,43 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@keyframes zoom-out-body {
+  0% {opacity: 100%; transform: scale(1)}
+  100% {opacity: 0%; transform: scale(0.95)}
+}
+@keyframes zoom-in-body {
+  0% {opacity: 0%; transform: scale(0.95)}
+  100% {opacity: 100%; transform: scale(1)}
+}
+
+
+.modal-background-fs + .dashboard {
+  animation: zoom-out-body 0.3s;
+}
+
+.modal-background-fade-out-fs + .dashboard {
+  animation: zoom-in-body 0.3s forwards;
+}
+
+.close-fs-modal {
+  position: absolute;
+  top: 40px;
+  left: calc(28vw + 730px);
+  display: block;
+  text-align: center;
+  line-height: 27px;
+  color: #6a7480;
+  border: 2px solid #6a7480;
+  border-radius: 50%;
+  height: 30px;
+  width: 29px;
+  font-size: 40px;
+  padding-left: 1px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #42464d;
+  }
 }

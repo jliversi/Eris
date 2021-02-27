@@ -21,6 +21,13 @@ export const createServer = serverFormData => (
   })
 );
 
+export const deleteServer = serverId => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/servers/${serverId}`
+  })
+);
+
 export const createServerMembership = (userId, serverId) => (
   $.ajax({
     method: 'POST',

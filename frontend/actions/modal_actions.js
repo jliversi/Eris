@@ -4,7 +4,7 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 
 
-export const openModal = (modalType, data = null) => ({
+export const openModal = (modalType, data = {}) => ({
   type: OPEN_MODAL,
   modal: {
     modalType,

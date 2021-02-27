@@ -15,9 +15,9 @@ function ServerChannelIndex(props) {
     return Object.values(channels).filter(c => c.serverId === parseInt(props.serverId))
   })
   const openChannelCreate = () => dispatch(openModal('ChannelCreateForm', { server, currentUser }));
-  const openServerSettings = () => dispatch(openModal('ServerSettings', { server }));
-  const openServerLeaveConfirm = () => dispatch(openModal('ServerLeaveConfirm', { server, currentUser} ));
-  const openUserSettings = () => dispatch(openModal('UserSettings'), { currentUser });
+  const openServerSettings = () => dispatch(openModal('ServerSettings', { server, fullscreen: true }));
+  const openServerLeaveConfirm = () => dispatch(openModal('ServerLeaveConfirm', { server, currentUser } ));
+  const openUserSettings = () => dispatch(openModal('UserSettings'), { currentUser, fullscreen: true });
   
   useEffect(() => {
     dispatch(fetchServer(props.serverId));

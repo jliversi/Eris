@@ -62,6 +62,14 @@ export const createServer = serverFormData => dispatch => (
     )
 );
 
+export const deleteServer = serverId => dispatch => (
+  ServerApiUtil.deleteServer(serverId)
+    .then(
+      ({ serverId }) => dispatch(removeServer(serverId)),
+      res => dispatch(receiveErrors(res.responseJSON))
+    )
+);
+
 export const createServerMembership = (userId, serverId) => dispatch => (
   ServerApiUtil.createServerMembership(userId, serverId)
     .then(
