@@ -8,10 +8,12 @@ import Login from './session/Login';
 import Register from './session/Register';
 import Dashboard from './Dashboard';
 import Modal from './modals/Modal';
+import FullscreenModal from './modals/FullscreenModal';
 
 function App(props) {
     return (
         <>
+            <FullscreenModal />
             <Modal />
             <Route exact path='/' component={Splash} />
             <Route exact path='/invite/:inviteCode' render={() => <div>hello</div>} />

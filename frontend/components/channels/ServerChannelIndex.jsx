@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCurrentUser } from '../../custom_hooks/session_hooks';
-import { openModal } from '../../actions/modal_actions';
+import { openModal, openFsModal } from '../../actions/modal_actions';
 import { fetchServer } from '../../actions/server_actions';
 import ChannelHeader from './ChannelHeader';
 import ChannelFooter from './ChannelFooter';
@@ -15,7 +15,7 @@ function ServerChannelIndex(props) {
     return Object.values(channels).filter(c => c.serverId === parseInt(props.serverId))
   })
   const openChannelCreate = () => dispatch(openModal('ChannelCreateForm', { server, currentUser }));
-  const openServerSettings = () => dispatch(openModal('ServerSettings', { server, fullscreen: true }));
+  const openServerSettings = () => dispatch(openFsModal('ServerSettings', { server, fullscreen: true }));
   const openServerLeaveConfirm = () => dispatch(openModal('ServerLeaveConfirm', { server, currentUser } ));
   const openUserSettings = () => dispatch(openModal('UserSettings'), { currentUser, fullscreen: true });
   

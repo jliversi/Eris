@@ -1,10 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../actions/modal_actions';
 
-function ServerSettingsOverview({ closeModal, server }) {
-
+function ServerSettingsOverview({ server }) {
+    const dispatch = useDispatch();
+    const openServerLeaveConfirm = () => dispatch(openModal('ServerLeaveConfirm', { server } ));
     return (
         <>
-            <div key='1'>OVERVIEW</div>
+            <div onClick={openServerLeaveConfirm}>OVERVIEW</div>
         </>
     )
 }

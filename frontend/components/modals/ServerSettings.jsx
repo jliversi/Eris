@@ -36,7 +36,7 @@ function ServerSettings({closeModal, server, history}) {
                 </ul>
             </nav>
             <section>
-                <Panel closeModal={closeModal} server={server} />
+                <Panel server={server} />
             </section>
             <i className='close-fs-modal' onClick={closeModal}>&#215;</i>
         </div>
